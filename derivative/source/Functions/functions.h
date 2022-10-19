@@ -1,0 +1,15 @@
+#pragma once
+
+#include "Const.h"
+#include "Simple.h"
+#include "ACos.h"
+#include "ACotangent.h"
+#include "ASin.h"
+#include "ATangent.h"
+#include "Cos.h"
+#include "Cotangent.h"
+#include "Exponent.h"
+#include "Logarithm.h"
+#include "Power.h"
+#include "Sin.h"
+#include "Tangent.h"

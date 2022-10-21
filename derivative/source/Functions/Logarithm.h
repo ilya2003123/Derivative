@@ -10,7 +10,7 @@ namespace functions
 	public:
 		typedef Logarithm<F> Type;
 		Logarithm(double base, const F& f)
-			:m_base(base), m_factor(1 / log(base)), m_f(f)
+			:m_base(base), m_factor(1. / log(base)), m_f(f)
 		{
 		}
 

@@ -15,6 +15,6 @@
 #include "CotangentUtil.h"
 #include "ExponentUtil.h"
 #include "LogarithmUtil.h"
-#include "Simple.h"
+#include "SimpleUtil.h"
 #include "SinusUtil.h"
 #include "TangentUtil.h"

@@ -152,10 +152,25 @@
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Derivative\ACosinus.h" />
+    <ClInclude Include="source\Derivative\ACotangent.h" />
     <ClInclude Include="source\Derivative\Add.h" />
+    <ClInclude Include="source\Derivative\ASinus.h" />
+    <ClInclude Include="source\Derivative\ATangent.h" />
     <ClInclude Include="source\Derivative\Const.h" />
+    <ClInclude Include="source\Derivative\Cosinus.h" />
+    <ClInclude Include="source\Derivative\Cotangent.h" />
+    <ClInclude Include="source\Derivative\Divide.h" />
+    <ClInclude Include="source\Derivative\Exponent.h" />
+    <ClInclude Include="source\Derivative\function-derivative.h" />
     <ClInclude Include="source\Derivative\General.h" />
+    <ClInclude Include="source\Derivative\Logarithm.h" />
+    <ClInclude Include="source\Derivative\Multiply.h" />
+    <ClInclude Include="source\Derivative\Power.h" />
     <ClInclude Include="source\Derivative\Simple.h" />
+    <ClInclude Include="source\Derivative\Sinus.h" />
+    <ClInclude Include="source\Derivative\Subtract.h" />
+    <ClInclude Include="source\Derivative\Tangent.h" />
     <ClInclude Include="source\Functions\ACos.h" />
     <ClInclude Include="source\Functions\ACotangent.h" />
     <ClInclude Include="source\Functions\ASin.h" />
@@ -189,6 +204,7 @@
     <ClInclude Include="source\Utils\MultiplyUtil.h" />
     <ClInclude Include="source\Utils\PowerUtil.h" />
     <ClInclude Include="source\Utils\Simple.h" />
+    <ClInclude Include="source\Utils\SimpleUtil.h" />
     <ClInclude Include="source\Utils\SinusUtil.h" />
     <ClInclude Include="source\Utils\SqrtUtil.h" />
     <ClInclude Include="source\Utils\SqrUtil.h" />

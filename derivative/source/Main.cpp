@@ -17,6 +17,8 @@ int main()
 
     const auto ds = derivative(s);
 
+    
+
     std::cout << s(1);
     std::cout << std::endl;
     std::cout << ds(1);

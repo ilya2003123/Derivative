@@ -17,3 +17,13 @@ derivative/derivative.vcxproj.filters
 derivative.sln
 derivative/bin/x64/Debug/derivative.exe
 derivative/bin/x64/Debug/derivative.exe
+*.ilk
+*.dll
+*.filters
+*.user
+*.zi
+*.vcxproj
+*.vcxproj
+*.exe
+derivative/bin/x64/Debug/derivative.exe
+*.exe

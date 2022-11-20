@@ -5,7 +5,7 @@
 namespace utils
 {
 	template<typename F>
-	functions::ACotangent<F> ACtg(const F& f)
+	functions::ACotangent<F> ACtg(F& f)
 	{
 		return functions::ACotangent<F>(f);
 	}

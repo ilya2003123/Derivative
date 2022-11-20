@@ -116,12 +116,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>D:\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -171,6 +171,7 @@
     <ClInclude Include="source\Derivative\Sinus.h" />
     <ClInclude Include="source\Derivative\Subtract.h" />
     <ClInclude Include="source\Derivative\Tangent.h" />
+    <ClInclude Include="source\Functions\Abstract.h" />
     <ClInclude Include="source\Functions\ACos.h" />
     <ClInclude Include="source\Functions\ACotangent.h" />
     <ClInclude Include="source\Functions\ASin.h" />
@@ -191,6 +192,8 @@
     <ClInclude Include="source\Operations\Multiply.h" />
     <ClInclude Include="source\Operations\operations.h" />
     <ClInclude Include="source\Operations\Subtract.h" />
+    <ClInclude Include="source\Parser\Parser.h" />
+    <ClInclude Include="source\test\test.h" />
     <ClInclude Include="source\Utils\ACosUtil.h" />
     <ClInclude Include="source\Utils\ACotangentUtil.h" />
     <ClInclude Include="source\Utils\AddUtil.h" />
@@ -203,7 +206,6 @@
     <ClInclude Include="source\Utils\LogarithmUtil.h" />
     <ClInclude Include="source\Utils\MultiplyUtil.h" />
     <ClInclude Include="source\Utils\PowerUtil.h" />
-    <ClInclude Include="source\Utils\Simple.h" />
     <ClInclude Include="source\Utils\SimpleUtil.h" />
     <ClInclude Include="source\Utils\SinusUtil.h" />
     <ClInclude Include="source\Utils\SqrtUtil.h" />

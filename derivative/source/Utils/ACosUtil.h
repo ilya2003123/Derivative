@@ -5,7 +5,7 @@
 namespace utils
 {
 	template<typename F>
-	functions::ACosinus<F> ACos(const F& f)
+	functions::ACosinus<F> ACos(F& f)
 	{
 		return functions::ACosinus<F>(f);
 	}

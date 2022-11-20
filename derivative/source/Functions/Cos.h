@@ -1,11 +1,12 @@
 #pragma once
 
 #include <cmath>
+#include "Abstract.h"
 
 namespace functions
 {
 	template<typename F>
-	class Cosinus
+	class Cosinus : public functions::Abstract
 	{
 	public:
 		typedef Cosinus<F> Type;
@@ -14,9 +15,12 @@ namespace functions
 		{
 		}
 
-		double operator()(double x) const
+		double operator()(double x) override
 		{
-			return cos(m_f(x));
+			if constexpr (std::is_pointer<F>::value)
+				return cos((*m_f)(x));
+			else
+				return cos(m_f(x));
 		}
 
 		F m_f;

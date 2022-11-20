@@ -5,7 +5,7 @@
 namespace utils
 {
 	template<typename F>
-	functions::Sinus<F> Sin(const F& f)
+	functions::Sinus<F> Sin(F& f)
 	{
 		return functions::Sinus<F>(f);
 	}

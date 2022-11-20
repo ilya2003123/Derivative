@@ -1,5 +1,7 @@
 #pragma once
 
+// Вот, тот самый файл, ради чего я всё это делал, один из них...
+
 #include "ACosinus.h"
 #include "ACotangent.h"
 #include "Add.h"

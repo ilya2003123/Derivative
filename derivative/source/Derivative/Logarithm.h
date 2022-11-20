@@ -6,7 +6,7 @@
 #include "../Utils/Utils.h"
 
 template <typename F>
-class Derivative<functions::Logarithm<F>> 
+class Derivative<functions::Logarithm<F>> : public functions::Abstract
 {
 public:
 	Derivative(const functions::Logarithm<F>& f)
@@ -14,9 +14,16 @@ public:
 	{
 	}
 
-	double operator()(double x) const
+	double operator()(double x) override
 	{
-		return (m_factor * m_df(x) / x);
+		double dfx = 0;
+
+		if constexpr (std::is_pointer<Derivative<F>>::value)
+			dfx += (*m_df)(x);
+		else
+			dfx += m_df(x);
+
+		return (m_factor * dfx / x);
 	}
 
 	double m_base, m_factor;

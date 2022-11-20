@@ -5,7 +5,7 @@
 namespace utils
 {
 	template<typename F>
-	functions::ASinus<F> ASin(const F& f)
+	functions::ASinus<F> ASin(F& f)
 	{
 		return functions::ASinus<F>(f);
 	}

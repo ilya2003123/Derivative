@@ -5,7 +5,7 @@
 namespace utils
 {
 	template<typename F>
-	functions::ATangent<F> ATg(const F& f)
+	functions::ATangent<F> ATg(F& f)
 	{
 		return functions::ATangent<F>(f);
 	}

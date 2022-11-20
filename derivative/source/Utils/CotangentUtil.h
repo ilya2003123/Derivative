@@ -5,7 +5,7 @@
 namespace utils
 {
 	template<typename F>
-	functions::Cotangent<F> Ctg(const F& f)
+	functions::Cotangent<F> Ctg(F& f)
 	{
 		return functions::Cotangent<F>(f);
 	}

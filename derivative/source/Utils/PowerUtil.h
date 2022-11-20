@@ -5,7 +5,7 @@
 namespace utils
 {
 	template<typename F, typename Num>
-	functions::Power<F> Pow(const F& f, Num n)
+	functions::Power<F> Pow(F& f, Num n)
 	{
 		return functions::Power<F>(f, n);
 	}

@@ -1,7 +1,10 @@
 #pragma once
 
+#pragma warning(disable: 26495)
+
 #include "../Functions/functions.h"
 #include "../Operations/operations.h"
+#include "../Derivative/derivative.h"
 #include <string>
 #include <vector>
 #include <cctype>
@@ -15,11 +18,13 @@ struct Expression
 	Expression(std::string token, functions::Abstract* f = nullptr) : token(token), func(f) {}
 	Expression(std::string token, Expression a) : token(token), args{ a } {}
 	Expression(std::string token, Expression a, Expression b) : token(token), args{ a, b } {}
+	Expression(std::string token, double base, functions::Abstract* f)
+		: token(token), number(base), func(f) {}
 
 	std::string token;
 	functions::Abstract* func;
 	std::vector<Expression> args;
-	double number;
+	double number = 0;
 };
 
 class Parser 
@@ -52,7 +57,7 @@ std::string Parser::parse_token()
 
 	static const std::string tokens[] =
 	{ "+", "-", "*", "/", "acos", "sin", "cos", "(", ")", "x", "actg", "asin", "atg", "ctg", "sqrt",
-	"pow", "log", "exp", "sqr", "tg", "," };
+	"pow", "log", "exp", "sqr", "tg", ",", "dx" };
 	for (auto& t : tokens) 
 	{
 		if (std::strncmp(input, t.c_str(), t.size()) == 0) 
@@ -109,33 +114,22 @@ Expression Parser::parse_simple_expression()
 		return Expression(token, new functions::Tangent(rightside.func));
 
 	if (token == "exp")
-	{
-		if (token == ",")
-		{
-			double number = stoi(parse_token());
-			return Expression(token, new functions::Exponent(number, rightside.func));
-		}
-	}
+		return Expression(token, new functions::Exponent(rightside.number, rightside.func));
 
 	if (token == "log")
-	{
-		if (token == ",")
-		{
-			
-			return Expression(token, new functions::Logarithm(rightside.number, rightside.func));
-		}
-	}
+		return Expression(token, new functions::Logarithm(rightside.number, rightside.func));
 
 	if (token == "pow")
 		return Expression(token, new functions::Power(rightside.func, rightside.number));
 
 	if (token == "sqrt")
-		return Expression(token, new functions::Power(rightside.func, rightside.number));
+		return Expression(token, new functions::Power(rightside.func, 0.5));
 
 	if (token == "sqr")
-		return Expression(token, new functions::Power(rightside.func, rightside.number));
+		return Expression(token, new functions::Power(rightside.func, 2));
 
-
+	if (token == "dx")
+		return Expression(token, new Derivative(rightside.func));
 
 	return Expression(token, rightside);
 }
@@ -146,6 +140,7 @@ int get_priority(const std::string& binary_op)
 	if (binary_op == "-") return 1;
 	if (binary_op == "*") return 2;
 	if (binary_op == "/") return 2;
+	if (binary_op == ",") return 3;
 						  return 0;
 }
 
@@ -173,8 +168,15 @@ Expression Parser::parse_binary_expression(int min_priority)
 			left_expr = Expression(op, new operations::Multiply(left_expr.func, right_expr.func));
 		else if (op == "/")
 			left_expr = Expression(op, new operations::Divide(left_expr.func, right_expr.func));
+		else if (op == ",")
+		{
+			if (std::isdigit(*(left_expr.token.c_str())))
+				left_expr = Expression(op, stod(left_expr.token), right_expr.func);
+			else
+				left_expr = Expression(op, stod(right_expr.token), left_expr.func);
+		}
 		else
-			left_expr = Expression(op, left_expr, right_expr);   
+			left_expr = Expression(op, left_expr, right_expr);
 	}
 }
 

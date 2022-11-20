@@ -1,11 +1,12 @@
 #pragma once
 
 #include <cmath>
+#include "Abstract.h"
 
 namespace functions
 {
 	template<typename F>
-	class ASinus
+	class ASinus : public functions::Abstract
 	{
 	public:
 		typedef ASinus<F> Type;
@@ -14,9 +15,12 @@ namespace functions
 		{
 		}
 
-		double operator()(double x) const
+		double operator()(double x) override
 		{
-			return asin(m_f(x));
+			if constexpr (std::is_pointer<F>::value)
+				return asin((*m_f)(x));
+			else
+				return asin(m_f(x));
 		}
 
 		F m_f;

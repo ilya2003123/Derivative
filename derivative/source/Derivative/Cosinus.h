@@ -6,7 +6,7 @@
 #include "../Utils/Utils.h"
 
 template <typename F>
-class Derivative<functions::Cosinus<F>> 
+class Derivative<functions::Cosinus<F>> : public functions::Abstract
 {
 public:
 	Derivative(const functions::Cosinus<F>& f)
@@ -14,9 +14,22 @@ public:
 	{
 	}
 
-	double operator()(double x) const
+	double operator()(double x) override
 	{
-		return (-sin(m_f(x)) * m_df(x));
+		double fx = 0;
+		double dfx = 0;
+
+		if constexpr (std::is_pointer<F>::value)
+			fx += (*m_f)(x);
+		else
+			fx += m_f(x);
+
+		if constexpr (std::is_pointer<Derivative<F>>::value)
+			dfx += (*m_df)(x);
+		else
+			dfx += m_df(x);
+
+		return (-sin(fx) * dfx);
 	}
 
 	F m_f;

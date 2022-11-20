@@ -6,7 +6,7 @@
 #include "../Utils/Utils.h"
 
 template <typename F>
-class Derivative<functions::Tangent<F>>
+class Derivative<functions::Tangent<F>> : public functions::Abstract
 {
 public:
 	Derivative(const functions::Tangent<F>& f)
@@ -14,10 +14,22 @@ public:
 	{
 	}
 
-	double operator()(double x) const
+	double operator()(double x) override
 	{
-		double cosfx = cos(m_f(x));
-		return (m_df(x) / (cosfx * cosfx));
+		double dfx = 0;
+		double fx = 0;
+
+		if constexpr (std::is_pointer<Derivative<F>>::value)
+			dfx += (*m_df)(x);
+		else
+			dfx += m_df(x);
+
+		if constexpr (std::is_pointer<F>::value)
+			fx += (*m_f)(x);
+		else
+			fx += m_f(x);
+
+		return (dfx / (cos(fx) * cos(fx)));
 	}
 
 	F m_f;

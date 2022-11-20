@@ -5,8 +5,11 @@
 #include "General.h"
 #include "../Utils/Utils.h"
 
+// Просто честно берём ручками, считаем производную и пишем сюда, и так в каждом файлике!
+// И конечно же мучаемся с типами, потому что это шаблоны :D
+
 template <class F>
-class Derivative<functions::Power<F>> 
+class Derivative<functions::Power<F>> : public functions::Abstract
 {
 public:
 	Derivative(const functions::Power<F>& f)
@@ -14,16 +17,30 @@ public:
 	{
 	}
 
-	double operator()(double x) const
+	double operator()(double x) override
 	{
-		return (m_n * pow(m_f(x), m_n - 1) * m_df(x));
+		double fx = 0;
+		double dfx = 0;
+
+
+		if constexpr (std::is_pointer<F>::value)
+			fx += (*m_f)(x);
+		else
+			fx += m_f(x);
+
+		if constexpr (std::is_pointer<Derivative<F>>::value)
+			dfx += (*m_df)(x);
+		else
+			dfx += m_df(x);
+
+		return (m_n * pow(fx, m_n - 1) * dfx);
 	}
 
 	F m_f;
 	double m_n;
 	Derivative<F> m_df;
 
-	typedef operations::Multiply<operations::Multiply<functions::Const, functions::Power<F> >,
+	typedef operations::Multiply<operations::Multiply<functions::Const, functions::Power<F>>,
 		typename Derivative<F>::Type> Type;
 	Type expression() const
 	{
@@ -33,14 +50,14 @@ public:
 };
 
 template <>
-class Derivative<functions::Power<functions::Const>> 
+class Derivative<functions::Power<functions::Const>> : public functions::Abstract
 {
 public:
 	Derivative(const functions::Power<functions::Const>& )
 	{
 	}
 
-	double operator()(double) const
+	double operator()(double) override
 	{
 		return 0;
 	}
@@ -53,7 +70,7 @@ public:
 };
 
 template <>
-class Derivative<functions::Power<functions::Simple>> 
+class Derivative<functions::Power<functions::Simple>> : public functions::Abstract
 {
 public:
 	Derivative(const functions::Power<functions::Simple>& f)
@@ -61,7 +78,7 @@ public:
 	{
 	}
 
-	double operator()(double x) const
+	double operator()(double x) override
 	{
 		return (m_n * pow(x, m_n - 1));
 	}

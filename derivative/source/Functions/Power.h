@@ -1,26 +1,30 @@
 #pragma once
 
 #include <cmath>
+#include "Abstract.h"
 
-namespace functions
+namespace functions  // тот же самый namespace
 {
-	template<typename F>
-	class Power
+	template<typename F> // шаблончик, вот тут то и начинается веселье, передаю в него тип F (может быть любой)
+	class Power : public functions::Abstract
 	{
-	public:
-		typedef Power<F> Type;
-		Power(const F& f, double n)
+	public:   // обязательно всё public. Ошибки сыпятся!
+		typedef Power<F> Type;  // Обзываю свою степень в которую передал какой-то тип Type-ом, тоже тёска
+		Power(const F& f, double n)   // Продолжаю эпоху минимализма
 			: m_f(f), m_n(n)
 		{
 		}
 
-		double operator()(double x) const
+		double operator()(double x) override  // С этим уже вроде знакомы
 		{
-			return pow(m_f(x), m_n);
+			if constexpr (std::is_pointer<F>::value)
+				return pow((*m_f)(x), m_n);
+			else
+				return pow(m_f(x), m_n);
 		}
 
-		F m_f;
-		double m_n;
+		F m_f;        // Одна переменная типа F
+		double m_n;   // Вторая double
 
 	};
 }

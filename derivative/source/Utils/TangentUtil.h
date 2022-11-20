@@ -5,7 +5,7 @@
 namespace utils
 {
 	template<typename F>
-	functions::Tangent<F> Tg(const F& f)
+	functions::Tangent<F> Tg(F& f)
 	{
 		return functions::Tangent<F>(f);
 	}

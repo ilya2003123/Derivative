@@ -1,43 +1,39 @@
+#pragma warning(disable: 26451)
+
 #include <iostream>
+#include <string>
+#include <vector>
 #include "Functions/functions.h"
 #include "Operations/operations.h"
 #include "Utils/Utils.h"
 #include "Derivative/derivative.h"
+#include "Parser/Parser.h"
+#include "test/test.h"
+//#include <iomanip> - для вывода, можно отрегулировать сколько знаков после запятой выводится!
 
-#define e 2.718281 
-#define pi 3.141592
+using namespace utils;  // Просто потому что надо! :D
 
-using namespace utils;
 
-int main() 
+int main()
 {
+	test();
 
-    auto s = (Tg(X + 1) + Sin(X) + Sqrt(X) + Log(e, X) * Pow(X, 3) * Log(pi, Pow(X, 3)));
+	try
+	{
+		std::string str;
+		std::cout << "Function: ";
+		std::cin >> str;
+		std::cout << std::endl;
+		std::cout << "X: ";
+		std::cin >> inputx;
+		std::cout << std::endl;
 
+		Parser p(str.c_str());
+		auto q = p.parse();
+		auto result = eval(q);
+		std::cout << result << std::endl;
+	}
+	catch (std::runtime_error& Error) { std::cout << Error.what() << std::endl; }
 
-    const auto ds = derivative(s);
-
-    
-
-    std::cout << s(1);
-    std::cout << std::endl;
-    std::cout << ds(1);
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << s(2);
-    std::cout << std::endl;
-    std::cout << ds(2);
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << s(3);
-    std::cout << std::endl;
-    std::cout << ds(3);
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << s(4);
-    std::cout << std::endl;
-    std::cout << ds(4);
-    std::cout << std::endl;
-
-    return 0;
+	return 0;
 }

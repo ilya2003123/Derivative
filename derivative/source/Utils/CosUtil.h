@@ -5,7 +5,7 @@
 namespace utils
 {
 	template<typename F>
-	functions::Cosinus<F> Cos(const F& f)
+	functions::Cosinus<F> Cos(F& f)
 	{
 		return functions::Cosinus<F>(f);
 	}

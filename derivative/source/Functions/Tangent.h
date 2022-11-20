@@ -1,11 +1,12 @@
 #pragma once
 
 #include <cmath>
+#include "Abstract.h"
 
 namespace functions
 {
 	template<typename F>
-	class Tangent
+	class Tangent : public functions::Abstract
 	{
 	public:
 		typedef Tangent<F> Type;
@@ -14,9 +15,12 @@ namespace functions
 		{
 		}
 
-		double operator()(double x) const
+		double operator()(double x) override
 		{
-			return tan(m_f(x));
+			if constexpr (std::is_pointer<F>::value)
+				return tan((*m_f)(x));
+			else
+				return tan(m_f(x));
 		}
 
 		F m_f;

@@ -6,7 +6,7 @@
 #include "../Utils/Utils.h"
 
 template <typename F>
-class Derivative<functions::Exponent<F>> 
+class Derivative<functions::Exponent<F>> : public functions::Abstract
 {
 public:
 	Derivative(const functions::Exponent<F>& f)
@@ -15,9 +15,22 @@ public:
 	{
 	}
 
-	double operator()(double x) const
+	double operator()(double x) override
 	{
-		return (pow(m_base, m_f(x)) * m_factor * m_df(x));
+		double fx = 0;
+		double dfx = 0;
+
+		if constexpr (std::is_pointer<F>::value)
+			fx += (*m_f)(x);
+		else
+			fx += m_f(x);
+
+		if constexpr (std::is_pointer<Derivative<F>>::value)
+			dfx += (*m_df)(x);
+		else
+			dfx += m_df(x);
+
+		return (pow(m_base, fx) * m_factor * dfx);
 	}
 
 	double m_base, m_factor;
@@ -26,7 +39,7 @@ public:
 
 	typedef operations::Multiply<operations::Multiply<functions::Exponent<F>, functions::Const>,
 		typename Derivative<F>::Type> Type;
-	Type expression() const
+	Type expression()
 	{
 		return (utils::Exp(m_base, m_f) * m_factor * m_df.expression());
 	}

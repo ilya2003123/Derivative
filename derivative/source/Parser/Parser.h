@@ -70,7 +70,7 @@ std::string Parser::parse_token()
 	return "";
 }
 
-Expression Parser::parse_simple_expression() 
+Expression Parser::parse_simple_expression()
 {
 	auto token = parse_token();
 	if (token.empty()) throw std::runtime_error("Invalid input");
@@ -88,6 +88,9 @@ Expression Parser::parse_simple_expression()
 		return Expression(token, new functions::Simple);
 
 	auto rightside = parse_simple_expression();
+
+	if (token == "-")
+		return Expression(token, new operations::UnarMinus(rightside.func));
 
 	if (token == "sin")
 		return Expression(token, new functions::Sinus(rightside.func));

@@ -1,7 +1,9 @@
 #pragma once
 
+#include "Abstract.h"
 #include <cmath>	// Думаю, пора рассказать про прекрасную стандартную библиотеку языка С++
-#include "Abstract.h"	// Там есть нужные нам функции, всё (-_-)
+					// Там есть нужные нам функции, всё (-_-)
+	
 
 namespace functions 
 {
@@ -27,6 +29,6 @@ namespace functions
 
 		double m_base, m_factor;  // 2 переменных типа double 
 		F m_f;   // 1 переменная типа F
-
+		
 	};
 }

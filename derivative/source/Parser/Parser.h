@@ -57,7 +57,7 @@ std::string Parser::parse_token()
 
 	static const std::string tokens[] =
 	{ "+", "-", "*", "/", "acos", "sin", "cos", "(", ")", "x", "actg", "asin", "atg", "ctg", "sqrt",
-	"pow", "log", "exp", "sqr", "tg", ",", "dx" };
+	"pow", "log", "exp", "sqr", "tg", ",", "dx", "^" };
 	for (auto& t : tokens) 
 	{
 		if (std::strncmp(input, t.c_str(), t.size()) == 0) 
@@ -144,6 +144,7 @@ int get_priority(const std::string& binary_op)
 	if (binary_op == "*") return 2;
 	if (binary_op == "/") return 2;
 	if (binary_op == ",") return 3;
+	if (binary_op == "^") return 4;
 						  return 0;
 }
 
@@ -177,6 +178,10 @@ Expression Parser::parse_binary_expression(int min_priority)
 				left_expr = Expression(op, stod(left_expr.token), right_expr.func);
 			else
 				left_expr = Expression(op, stod(right_expr.token), left_expr.func);
+		}
+		else if (op == "^")
+		{
+			left_expr = Expression(op, new functions::Exponent_Power(left_expr.func, right_expr.func));
 		}
 		else
 			left_expr = Expression(op, left_expr, right_expr);

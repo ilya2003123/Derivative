@@ -49,7 +49,7 @@ public:
 	typedef operations::Multiply<functions::Exponent_Power<F1, F2>,
 		operations::Add<operations::Multiply<typename Derivative<F2>::Type, functions::Const>,
 		operations::Divide<F2, F1>>> Type;
-	Type expression()
+	Type expression() const
 	{
 		return (utils::Exp_Pow(m_f1, m_f2) * (m_df2.expression() * m_factor + m_f2 / m_f1));
 	}

@@ -20,9 +20,12 @@ struct Expression
 	Expression(std::string token, Expression a, Expression b) : token(token), args{ a, b } {}
 	Expression(std::string token, double base, functions::Abstract* f)
 		: token(token), number(base), func(f) {}
+	Expression(std::string token, functions::Abstract* f1, functions::Abstract* f2)
+		: token(token), func(f1), func2(f2) {}
 
 	std::string token;
 	functions::Abstract* func;
+	functions::Abstract* func2;
 	std::vector<Expression> args;
 	double number = 0;
 };
@@ -120,7 +123,7 @@ Expression Parser::parse_simple_expression()
 		return Expression(token, new functions::Exponent(rightside.number, rightside.func));
 
 	if (token == "log")
-		return Expression(token, new functions::Logarithm(rightside.number, rightside.func));
+		return Expression(token, new functions::Logarithm(rightside.func, rightside.func2));
 
 	if (token == "pow")
 		return Expression(token, new functions::Power(rightside.func, rightside.number));
@@ -176,9 +179,11 @@ Expression Parser::parse_binary_expression(int min_priority)
 		{
 			if (std::isdigit(*(left_expr.token.c_str())))
 				left_expr = Expression(op, stod(left_expr.token), right_expr.func);
-			else
+			else if (std::isdigit(*(right_expr.token.c_str())))
 				left_expr = Expression(op, stod(right_expr.token), left_expr.func);
-		}
+			else														
+				left_expr = Expression(op, left_expr.func, right_expr.func);
+		}																	
 		else if (op == "^")
 		{
 			left_expr = Expression(op, new functions::Exponent_Power(left_expr.func, right_expr.func));

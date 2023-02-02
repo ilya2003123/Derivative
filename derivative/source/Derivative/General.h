@@ -9,7 +9,7 @@ template<typename F> // Ёто так сказать, Ѕј«ќ¬џ… класс производных
 class Derivative : public functions::Abstract
 {
 public:
-	Derivative(const F& f, double dx = 1e-6) // конструктор, дельту беру за (1 / 1000000)
+	Derivative(const F& f, double dx = 5e-6) // конструктор, дельту беру за (1 / 5000000)
 		: m_f(f), m_dx(dx)
 	{
 	}

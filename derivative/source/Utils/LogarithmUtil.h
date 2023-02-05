@@ -14,6 +14,4 @@ namespace utils  // Логарифмы тоже могут быть разные
 	{
 		return (log(x) / log(base));
 	}
-
-
 }

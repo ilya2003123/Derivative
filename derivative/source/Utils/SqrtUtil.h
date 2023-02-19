@@ -5,12 +5,12 @@
 namespace utils
 {
 	template<typename F>
-	functions::Power<F> Sqrt(F& f)  // тоже шаблонная функция, извлечения корня
+	functions::Power<F> Sqrt(F& f) 
 	{
 		return functions::Power<F>(f, 0.5);
 	}
 
-	double Sqrt(double x)  // Опять же для скорости выполнения программы
+	double Sqrt(double x) 
 	{
 		return sqrt(x);
 	}

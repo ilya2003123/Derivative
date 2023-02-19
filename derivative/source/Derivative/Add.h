@@ -4,11 +4,11 @@
 #include "../Functions/functions.h"
 #include "General.h"
 
-template<typename F1, typename F2> // Передаём сюда два типа
-class Derivative<operations::Add<F1, F2>> : public functions::Abstract // класс от операции сложения двух типов
+template<typename F1, typename F2> 
+class Derivative<operations::Add<F1, F2>> : public functions::Abstract 
 {
 public:
-	Derivative(const operations::Add<F1, F2>& f) // конструктор, тут не минималистичен
+	Derivative(const operations::Add<F1, F2>& f) 
 		: m_df1(f.m_f1), m_df2(f.m_f2)
 	{
 	}
@@ -34,16 +34,11 @@ public:
 	Derivative<F1> m_df1;
 	Derivative<F2> m_df2;
 
-	// Я думаю пришло время рассказать ещё одну вещь, для чего нам везде писать слово typename?
-	// Что за слово такое, а вот оно нам надо, чтобы компилятор понимал, что я использую шаблоны
-	// т.к. при "прочтении" он "<", ">" представляет как знак меньше или больше соответственно
-
 	typedef operations::Add<typename Derivative<F1>::Type, typename Derivative<F2>::Type> Type;
 	Type expression()
 	{
 		return m_df1.expression() + m_df2.expression();
 	}
-	// производная от суммы "функций" будет сумма производных
 };
 
 
@@ -70,8 +65,8 @@ public:
 
 	Derivative<F1> m_df1;
 
-	typedef typename Derivative<F1>::Type Type;  // здесь мы оставляем только первый член выражения, потому что
-	Type expression()                     // второй является константой
+	typedef typename Derivative<F1>::Type Type;
+	Type expression()                     
 	{
 		return m_df1.expression();
 	}
@@ -100,7 +95,7 @@ public:
 
 	Derivative<F2> m_df2;
 
-	typedef typename Derivative<F2>::Type Type;   // Здесь второй
+	typedef typename Derivative<F2>::Type Type;  
 	Type expression()
 	{
 		return m_df2.expression();
@@ -120,7 +115,7 @@ public:
 		return 0;
 	}
 
-	typedef typename functions::Const Type;   // здесь две константы, ответ очевиден
+	typedef typename functions::Const Type;  
 	Type expression()
 	{
 		return functions::Const(0);
@@ -141,7 +136,7 @@ public:
 		return 2;
 	}
 
-	typedef functions::Const Type;  // Две функции "Simple" Ответ конечно же два!
+	typedef functions::Const Type; 
 	Type expression()
 	{
 		return functions::Const(2);

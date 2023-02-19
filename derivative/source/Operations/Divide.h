@@ -2,7 +2,7 @@
 
 #include "../Functions/Abstract.h"
 
-namespace operations  // ну тут уже и сказать то нечего :D
+namespace operations 
 {
 	template<typename F1, typename F2>
 	class Divide : public functions::Abstract

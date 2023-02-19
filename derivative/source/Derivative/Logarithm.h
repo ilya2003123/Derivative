@@ -71,7 +71,6 @@ public:
 		functions::Logarithm<functions::Const, F2>>>,
 		operations::Multiply<operations::Multiply<operations::Multiply<F1, F2>,
 		functions::Logarithm<functions::Const, F1>>, functions::Logarithm<functions::Const,	F1>>> Type;
-	// typename - C»À¿
 
 	Type expression()
 	{

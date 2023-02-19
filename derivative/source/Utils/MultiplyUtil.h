@@ -4,7 +4,6 @@
 #include "../Operations/operations.h"
 #include <type_traits>
 
-// Всё рассказал уже вроде
 
 namespace utils
 {

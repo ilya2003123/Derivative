@@ -3,8 +3,8 @@
 #include <cmath>
 #include "Abstract.h"
 
-namespace functions  // Ќу, этот класс ничем вроде как не отличаетс€ от других, рассказать о нЄм ничего нового
-{                    // не могу
+namespace functions  
+{                    
 	template<typename F>
 	class Sinus : public functions::Abstract
 	{

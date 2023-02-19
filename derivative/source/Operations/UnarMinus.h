@@ -2,19 +2,19 @@
 
 #include "../Functions/Abstract.h"
 
-namespace operations  // Ещё немножко таких namespace-ов
+namespace operations  
 {
 	template<typename F>
 	class UnarMinus : public functions::Abstract
 	{
 	public:
-		typedef UnarMinus<F> Type;  // Обзываюсь
-		UnarMinus(const F& f)  // Конструктор
+		typedef UnarMinus<F> Type;  
+		UnarMinus(const F& f)  
 			:m_f(f)
 		{
 		}
 
-		double operator()(double x) override  //  перегрузка
+		double operator()(double x) override  
 		{
 			double f = 0;
 
@@ -26,7 +26,7 @@ namespace operations  // Ещё немножко таких namespace-ов
 			return -f;
 		}
 
-		F m_f;  // Переменные
+		F m_f; 
 
 	};
 }

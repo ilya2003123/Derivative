@@ -2,19 +2,19 @@
 
 #include "../Functions/Abstract.h"
 
-namespace operations  // Ещё немножко таких namespace-ов
+namespace operations  
 {
-	template<typename F1, typename F2>  // так же передаю в него 2 типа, вычитание же :D
+	template<typename F1, typename F2> 
 	class Subtract : public functions::Abstract
 	{
 	public:
-		typedef Subtract<F1, F2> Type;  // Обзываюсь
-		Subtract(const F1& f1, const F2& f2)  // Конструктор
+		typedef Subtract<F1, F2> Type;  
+		Subtract(const F1& f1, const F2& f2)  
 			:m_f1(f1), m_f2(f2)
 		{
 		}
 
-		double operator()(double x) override  //  перегрузка
+		double operator()(double x) override 
 		{
 			double f1 = 0;
 			double f2 = 0;
@@ -32,7 +32,7 @@ namespace operations  // Ещё немножко таких namespace-ов
 			return f1 - f2;
 		}
 
-		F1 m_f1;  // Переменные
+		F1 m_f1;  
 		F2 m_f2;
 
 	};

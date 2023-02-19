@@ -2,21 +2,21 @@
 
 #include "../Functions/functions.h"
 
-namespace utils  // показательная функция бывает разная
+namespace utils 
 {
 	template<typename F>
-	functions::Exponent<F> Exp(double base, F& f)  // Шаблонная функция для double
+	functions::Exponent<F> Exp(double base, F& f)  
 	{
 		return functions::Exponent<F>(base, f);
 	}
 
 	template<typename F>
-	functions::Exponent<F> Exp(int base, F& f)  // шаблонная функция для int 
+	functions::Exponent<F> Exp(int base, F& f)  
 	{
 		return functions::Exponent<F>(base, f);
 	}
 
-	double Exp(double base, double x)  // Если кратко, три слова: double double double
+	double Exp(double base, double x)  
 	{
 		return pow(base, x);
 	}

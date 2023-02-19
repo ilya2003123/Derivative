@@ -4,7 +4,6 @@
 #include "../Functions/functions.h"
 #include "General.h"
 
-// По сути повторение Add.h в папке Derivative, только со своими фишками
 
 template<typename F1, typename F2>
 class Derivative<operations::Subtract<F1, F2>> : public functions::Abstract

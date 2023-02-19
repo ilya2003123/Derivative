@@ -2,7 +2,7 @@
 
 #include "../Functions/Abstract.h"
 
-namespace operations  // тут тем более
+namespace operations  
 {
 	template<typename F1, typename F2>
 	class Multiply : public functions::Abstract

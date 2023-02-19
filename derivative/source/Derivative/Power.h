@@ -5,8 +5,6 @@
 #include "General.h"
 #include "../Utils/Utils.h"
 
-// Просто честно берём ручками, считаем производную и пишем сюда, и так в каждом файлике!
-// И конечно же мучаемся с типами, потому что это шаблоны :D
 
 template <class F>
 class Derivative<functions::Power<F>> : public functions::Abstract

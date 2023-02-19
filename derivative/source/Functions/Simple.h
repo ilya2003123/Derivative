@@ -2,15 +2,15 @@
 
 #include "Abstract.h"
 
-namespace functions  // Тот же самый namespace
+namespace functions  
 {
 	class Simple : public functions::Abstract
 	{
 	public:
-		typedef Simple Type;   // Тоже обзываю, будет тёской Const'a
+		typedef Simple Type;   
 
-		double operator()(double x) override  // Так же перегружаю оператор вызова функции 
-		{                                  // double передаю и double получаю, обязательно всё const!!!
+		double operator()(double x) override  
+		{                                
 			return x;
 		}
 	};

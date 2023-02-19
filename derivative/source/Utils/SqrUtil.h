@@ -4,13 +4,13 @@
 
 namespace utils
 {
-	template<typename F> // Шаблонная функция возведения в квадрат
+	template<typename F>
 	operations::Multiply<F, F> Sqr(F& f)
 	{
 		return operations::Multiply<F, F>(f, f);
 	}
 
-	double Sqr(double x)  // double, потому что double чаще всего будет передаваться, перегрузил просто для скорости
+	double Sqr(double x) 
 	{
 		return x * x;
 	}

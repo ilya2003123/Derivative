@@ -3,7 +3,7 @@
 #include"../Functions/functions.h"
 #include "General.h"
 
-template<>  // частичная специализация
+template<> 
 class Derivative<functions::Const> : public functions::Abstract
 {
 public:

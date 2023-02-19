@@ -3,28 +3,28 @@
 #include <cmath>
 #include "Abstract.h"
 
-namespace functions // Ну тут уж слов нет
+namespace functions 
 {
-	template<typename F>  // Вроде тоже всё ясно
+	template<typename F>  
 	class Exponent : public functions::Abstract
 	{
-	public:  // Закрепим, обзываю свой класс показательной функции в которую передаю тип F, Type-ом
+	public: 
 		typedef Exponent<F> Type;  
 		Exponent(const double base, const F& f)
 			:m_base(base), m_f(f)
 		{
 		}
 
-		double operator()(double x) override  // Ну тут говорить нечего, я считаю
+		double operator()(double x) override  
 		{
 			if constexpr (std::is_pointer<F>::value)
 				return pow(m_base, (*m_f)(x));
 			else
-				return pow(m_base, m_f(x));   // используем стандартные формулы языка,
-		}								  // мы што умные штоли с нуля ВСЁ писать :D
+				return pow(m_base, m_f(x));   
+		}								 
 
-		double m_base;  // здесь основание double
-		F m_f;          // А вот здесь будет наш тип F (предположительно какая-то функция)
+		double m_base;  
+		F m_f;          
 
 	};
 }

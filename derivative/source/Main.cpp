@@ -9,9 +9,9 @@
 #include "Derivative/derivative.h"
 #include "Parser/Parser.h"
 #include "test/test.h"
-//#include <iomanip> - для вывода, можно отрегулировать сколько знаков после запятой выводится!
+//#include <iomanip> 
 
-using namespace utils;  // Просто потому что надо! :D
+using namespace utils;
 
 
 int main()

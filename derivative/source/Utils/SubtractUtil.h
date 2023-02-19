@@ -4,7 +4,6 @@
 #include "../Functions/functions.h"
 #include <type_traits>
 
-// Пройденный этап, глядите AddUtil.h
 
 namespace utils
 {

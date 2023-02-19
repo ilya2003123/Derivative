@@ -14,3 +14,7 @@ derivative/build/x64/Debug/Main.obj
 derivative/build/x64/Debug/vc142.idb
 *.filters
 *.user
+derivative/.vs/derivative/v16/.suo
+derivative/bin/x64/Debug/derivative.exe
+*.sln
+*.vcxproj

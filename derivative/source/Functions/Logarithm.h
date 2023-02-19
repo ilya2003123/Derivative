@@ -1,22 +1,21 @@
 #pragma once
 
 #include "Abstract.h"
-#include <cmath>	// Думаю, пора рассказать про прекрасную стандартную библиотеку языка С++
-					// Там есть нужные нам функции, всё (-_-)
+#include <cmath>	
 	
 
 namespace functions 
 {
-	template<typename F1, typename F2>   // Тут всё ясненько вроде
+	template<typename F1, typename F2>   
 	class Logarithm : public functions::Abstract
 	{
 	public:
-		typedef Logarithm<F1, F2> Type;  // Тут вроде тоже
-		Logarithm(const F1& f1, const F2& f2) // Вот тут могут возникнуть вопросики, я предвидел это, поэтому
-			:m_f1(f1), m_f2(f2) // сразу говорю. у нас в "cmath" есть только
-		{    // натуральный логарифм, нам такое не подходит, мы же хотим ещё какой-то, для нас существует много
-		}	 // логарифмов, поэтому мы по одному из свойств логарифма можем получить любой, нам надо разделить
-	    // два логарифма с одинаковыми основаниями, короче вы и так это знаете лучше меня. Точка после 1 нужна!	
+		typedef Logarithm<F1, F2> Type;  
+		Logarithm(const F1& f1, const F2& f2) 
+			:m_f1(f1), m_f2(f2) 
+		{   
+		}	
+	   
 
 		double operator()(double x) override
 		{
@@ -33,7 +32,7 @@ namespace functions
 				factor = (1. / log(m_f1(x)));
 
 			return fx * factor;
-			// Вот тут мы это и делаем, внимательно посмотрите чему равны переменные
+			
 		}
 
 		F1 m_f1;
